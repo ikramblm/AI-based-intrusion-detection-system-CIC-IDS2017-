@@ -1,0 +1,53 @@
+[sample] streaming CSVs, cap 20,000 rows/class
+  read Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv (11s)
+  read Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv (10s)
+  read Friday-WorkingHours-Morning.pcap_ISCX.csv (7s)
+  read Monday-WorkingHours.pcap_ISCX.csv (49s)
+  read Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv (41s)
+  read Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv (29s)
+  read Tuesday-WorkingHours.pcap_ISCX.csv (36s)
+  read Wednesday-workingHours.pcap_ISCX.csv (32s)
+[sample] 114,402 rows, 15 labels
+== sample done in 217s
+
+[binary] constant=10 correlated=16 selected=52
+[binary] {'Accuracy': 0.999, 'Precision': 0.9994, 'Recall': 0.9993, 'F1': 0.9994, 'ROC_AUC': 1.0}
+== binary done in 47s
+
+[multiclass] accuracy=0.9914 macro_f1=0.8633
+== multiclass done in 80s
+
+[compare] Logistic Regression: F1=0.9736 (4s)
+[compare] Random Forest: F1=0.9994 (39s)
+[compare] XGBoost: F1=0.9995 (16s)
+[compare] Isolation Forest: F1=0.6402
+== compare done in 64s
+
+[crossday] training sample from Monday-Thursday
+  read Monday-WorkingHours.pcap_ISCX.csv (23s)
+  read Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv (12s)
+  read Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv (7s)
+  read Tuesday-WorkingHours.pcap_ISCX.csv (19s)
+  read Wednesday-workingHours.pcap_ISCX.csv (36s)
+[crossday] full Friday test set
+  read Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv (13s)
+  read Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv (16s)
+  read Friday-WorkingHours-Morning.pcap_ISCX.csv (13s)
+[crossday] {'Accuracy': 0.7525, 'Precision': 0.9869, 'Recall': 0.3422, 'F1': 0.5081, 'ROC_AUC': 0.8533}
+           flows  flagged_as_attack_rate
+label                                   
+BENIGN    401532                0.002715
+Bot         1953                0.000000
+DDoS      128016                0.635975
+PortScan  109544                0.004893
+== crossday done in 211s
+
+  wrote model_comparison.png
+  wrote confusion_matrix_binary.png
+  wrote confusion_matrix_multiclass.png
+  wrote feature_importance.png
+  wrote cross_day_comparison.png
+  wrote per_class_f1.png
+  wrote class_distribution.png
+== figures done in 10s
+

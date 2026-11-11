@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Raw CIC-IDS2017 data (too large for GitHub; download separately)
+MachineLearningCVE/
+MachineLearningCSV/
+*.parquet
+results/working_sample.parquet
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
